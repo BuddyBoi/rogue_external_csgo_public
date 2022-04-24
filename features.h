@@ -65,6 +65,8 @@ namespace features
 		memory::write<int>( g_localplayer.address + offsets::m_iFOV, settings->misc.custom_fov_amount );
 	}
 
+	//just realized this shit is way off
+	//look at rcs code to see how to improve this
 	void recoil_crosshair()
 	{
 		if ( !settings->visuals.recoil_crosshair )
@@ -181,7 +183,7 @@ namespace features
 
 		angle_sanitize( mouse_angle );
 
-		mouse_event( 0x1, (int)mouse_angle.y, (int)mouse_angle.x, 0, 0 );
+		LI_FN(mouse_event).cached()( 0x1, (int)mouse_angle.y, (int)mouse_angle.x, 0, 0 );
 	}
 
 	//IMPROVEMENT:
